@@ -3,8 +3,7 @@ package Assignment;
 import java.util.Scanner;
 
 public class Testing {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Enter Name: ");
@@ -18,6 +17,7 @@ public class Testing {
 
         WaterFixture fixture = new ShowerFixture(name, flowRate, showerTime);
 
-        System.out.print(fixture.getName() + " " + ((ShowerFixture)fixture).getShowerTime() + " " + ((ShowerFixture)fixture).getWaterFlowRate());
+        System.out.print(fixture.getName() + " " + ((ShowerFixture) fixture).getShowerTime() + " "
+                + ((ShowerFixture) fixture).getWaterFlowRate());
     }
 }
