@@ -34,8 +34,8 @@ public class ApplianceFixture extends WaterFixture{
 
     //Water usage calculation
     @Override
-    public double calculateWaterUsage() {
-        return waterFlowRate*showerTime;
+    public double calculateWaterUsage(minutes) {
+        return waterFlowRate * minutes;
     }
 
     //?
