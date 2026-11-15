@@ -20,7 +20,7 @@ public class WaterFixture {
     }
 
     //Water usage calculation
-    public double calculateWaterUsage() {
+    public double calculateWaterUsage(double amount) {
         return 0;
     };
 

@@ -1,0 +1,7 @@
+Features to implement:
+1. View total consumption and estimated cost
+2. Show high-consumption fixtures 
+3. Verification before recording usage, where a fixture must be added before recording usage.
+4. Handle exceptions.
+5. how to ensure users input correct date format.
+6. Allow users to store fixtures

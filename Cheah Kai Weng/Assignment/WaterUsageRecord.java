@@ -22,6 +22,9 @@ public class WaterUsageRecord {
 
     // Setter for Recorded Fixture
     public void setFixture(WaterFixture newFixture) {
+        if (newFixture == null){
+            throw new IllegalArgumentException("Water fixture cannot be null.");
+        }
         this.fixture = newFixture;
     }
 
@@ -30,8 +33,11 @@ public class WaterUsageRecord {
         return date;
     }
 
-    // Setter for Record Date
+    // Setter for Record Date // how to ensure valid date or allow users to enter valid date
     public void setDate( LocalDate newDate) {
+        if (newDate == null){
+            throw new IllegalArgumentException("Date cannot be null.");
+        }
         this.date = newDate;
     }
     
@@ -42,6 +48,13 @@ public class WaterUsageRecord {
 
     // Setter for recorded litres of water used
     public void setLitres(Double newLitres) {
+        if (newLitres == null){
+            throw new IllegalArgumentException("Litres cannot be null.");
+        }
+        if (newLitres < 0) {
+            throw new IllegalArgumentException("Litres of water used cannot be negative.");
+        }
         this.litres = newLitres;
     }
+
 }
