@@ -12,7 +12,6 @@ public class Household {
     // format WaterFixture obj( String givenName, double givenWFR from subclass)
     private ArrayList<WaterUsageRecord> records = new ArrayList<WaterUsageRecord>();
     
-
     // Default Constructor
     public Household() {
     }
@@ -40,7 +39,7 @@ public class Household {
 
     public void displayRecords(){
         // Use for loop to iterate over each index in the recordList arraylist, where each index contains a WaterUsageRecord Object
-        for (int i = 0; i < this.records.size(); i++) {
+        for (int i = 0; i < records.size(); i++) {
         // Use ArrayList utilty method to obtain the WaterUsageRecord Objec
             WaterUsageRecord record = records.get(i);
         // Use date getter of WaterUsageRecord Object
