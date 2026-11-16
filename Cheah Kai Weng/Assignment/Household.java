@@ -16,10 +16,6 @@ public class Household {
         return fixtures;
     }
 
-    // public WaterFixture getFixtureFromList(ArrayList<WaterFixture> waterFixtureList, int index){
-    //     return waterFixtureList.get(index);
-    // }
-
     // Getter for list of household water usage records
     public ArrayList<WaterUsageRecord> getRecordArrayList() {
         return records;
@@ -50,14 +46,19 @@ public class Household {
             }
         }
 
+        // possible need to extract flow rate here as well
     public void displayFixtures(ArrayList<WaterFixture> fixtureArrayList){
+        System.out.println("");
+        System.out.println("Fixture List:");
         // Use for loop to iterate over each index in the fixtureArrayList, where each index contains a WaterFixture Object
         for (int i = 0; i < fixtureArrayList.size(); i++) {
         // Use ArrayList utilty method to obtain the WaterFixture Object
             WaterFixture fixture = fixtureArrayList.get(i);
         // Use name getter of WaterFixture Object
-            System.out.printf("Fixture %d: %s \n", i+1, fixture.getName());
+            System.out.printf("Fixture %d: %s,  \n", i+1, fixture.getName());
             }
+             System.out.println("");
+
         }
     
 
