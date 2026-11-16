@@ -51,6 +51,12 @@ public class Testing {
         ArrayList<WaterUsageRecord> recordList = household.getRecordArrayList();
         household.displayRecords(recordList);   
 
+        System.out.println("===== All Fixtures =====");
+        // Use getter to obtain record list from household obj
+        ArrayList<WaterFixture> fixtureList = household.getFixtureArrayList();
+        household.displayFixtures(fixtureList);   
+
+
         input.close();
     }
 }

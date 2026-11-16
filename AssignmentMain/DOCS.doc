@@ -1,0 +1,37 @@
+App class
+Untested main class of the program (Shows the overall structure of the WaterTrackerAPP)
+
+WaterUsageRecord class:
+Defines the WaterUsageRecord Object and its Constructor that is used to record water usage
+
+The object has attributes of:
+(WaterFixture fixture, LocalDate date, double litres)
+// LocalDate Object String like "2026-11-13" in "format (YYYY-MM-DD)"
+This mainly serves as a blueprint for record objects
+
+Methods:
+getFixture() - returns the stored WaterFixture object
+setFixture(WaterFixture newFixture) - used in constructor to set WaterFixture object
+getDate() - returns LocalDate object
+setDate(LocalDate newDate) - used in constructor to set the usage date
+getLitres() - returns litres of water used as double 
+setLitres(Double newLitres) - used in constructor to set the usage amount
+
+Household class:
+
+attributes:
+ArrayList<WaterFixture> fixtures :
+This is an arraylist used to store created WaterFixture objects
+
+ArrayList<WaterUsageRecord> records
+This is an arraylist used to store created WaterUsageRecord objects
+    // format records[ WaterUsageRecord obj1(WaterFixture obj, LocalDate obj, double litres),Record2(WaterFixture obj, LocalDate obj, double litres) ]
+    // format WaterFixture obj( String givenName, double givenWFR from subclass)
+
+Methods:
+getFixtureArrayList() - Returns an arraylist of fixtures objects
+getRecordArrayList() -  Returns an arraylist of record objects
+addFixture(WaterFixture fixture) - adds a fixture object to the Fixture arraylist
+recordUsage(WaterFixture fixture, LocalDate date, double amount) - adds a record object to the record arraylist
+displayRecords(ArrayList<WaterUsageRecord> recordArrayList) - prints out the stored record list
+displayFixtures(ArrayList<WaterFixture> fixtureArrayList) -prints out the stored fixture list

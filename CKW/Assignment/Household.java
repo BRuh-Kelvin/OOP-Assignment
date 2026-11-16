@@ -3,14 +3,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Household {
+
     // Create array lists for WaterFixture objects
     private ArrayList<WaterFixture> fixtures = new ArrayList<WaterFixture>();
 
     // Create array lists for WaterUsageRecord objects 
     // format records[ WaterUsageRecord obj1(WaterFixture obj, LocalDate obj, double litres),Record2(WaterFixture obj, LocalDate obj, double litres) ]
-    // format WaterFixture obj( String givenName, double givenWFR from subclass, double givenST from subclass)
+    // format WaterFixture obj( String givenName, double givenWFR from subclass)
     private ArrayList<WaterUsageRecord> records = new ArrayList<WaterUsageRecord>();
     
+
+    // Default Constructor
+    public Household() {
+    }
+
     // Getter for list of household water fixtures
     public ArrayList<WaterFixture> getFixtureArrayList() {
         return fixtures;
@@ -26,10 +32,10 @@ public class Household {
         fixtures.add(fixture);
     }
 
-    public WaterUsageRecord recordUsage(WaterFixture fixture, LocalDate date, double amount) {
+    // Add  WaterUsageRecord object to arraylist
+    public void recordUsage(WaterFixture fixture, LocalDate date, double amount) {
         WaterUsageRecord record = new WaterUsageRecord(fixture, date, fixture.calculateWaterUsage(amount));
         records.add(record);
-        return record;
     }
 
     public void displayRecords(ArrayList<WaterUsageRecord> recordArrayList){
@@ -60,8 +66,5 @@ public class Household {
              System.out.println("");
 
         }
-    
-
-    
 
 }
