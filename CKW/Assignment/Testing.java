@@ -21,7 +21,8 @@ public class Testing {
         household.addFixture(fixture2);
 
         // display fixture list
-        household.displayFixtures(fixtureArrayList);
+        System.out.println("===== All Fixtures =====");
+        household.displayFixtures();
     
         System.out.println("Select a fixture:");
             for (int i = 0; i < fixtureArrayList.size(); i++) {
@@ -47,14 +48,7 @@ public class Testing {
         household.recordUsage(fixtureArrayList.get(fixtureIndex-1), date,  fixtureArrayList.get(fixtureIndex).calculateWaterUsage(usage));
 
         System.out.println("===== All Water Usage Records =====");
-        // Use getter to obtain record list from household obj
-        ArrayList<WaterUsageRecord> recordList = household.getRecordArrayList();
-        household.displayRecords(recordList);   
-
-        System.out.println("===== All Fixtures =====");
-        // Use getter to obtain record list from household obj
-        ArrayList<WaterFixture> fixtureList = household.getFixtureArrayList();
-        household.displayFixtures(fixtureList);   
+        household.displayRecords();   
 
 
         input.close();

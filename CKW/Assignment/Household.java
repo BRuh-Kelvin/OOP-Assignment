@@ -38,11 +38,11 @@ public class Household {
         records.add(record);
     }
 
-    public void displayRecords(ArrayList<WaterUsageRecord> recordArrayList){
+    public void displayRecords(){
         // Use for loop to iterate over each index in the recordList arraylist, where each index contains a WaterUsageRecord Object
-        for (int i = 0; i < recordArrayList.size(); i++) {
+        for (int i = 0; i < this.records.size(); i++) {
         // Use ArrayList utilty method to obtain the WaterUsageRecord Objec
-            WaterUsageRecord record = recordArrayList.get(i);
+            WaterUsageRecord record = records.get(i);
         // Use date getter of WaterUsageRecord Object
             System.out.println("Date: " + record.getDate());
         // Use fixture object getter of WaterUsageRecord Object. then use name getter of fixture object
@@ -53,13 +53,13 @@ public class Household {
         }
 
         // possible need to extract flow rate here as well
-    public void displayFixtures(ArrayList<WaterFixture> fixtureArrayList){
+    public void displayFixtures(){
         System.out.println("");
         System.out.println("Fixture List:");
         // Use for loop to iterate over each index in the fixtureArrayList, where each index contains a WaterFixture Object
-        for (int i = 0; i < fixtureArrayList.size(); i++) {
+        for (int i = 0; i < fixtures.size(); i++) {
         // Use ArrayList utilty method to obtain the WaterFixture Object
-            WaterFixture fixture = fixtureArrayList.get(i);
+            WaterFixture fixture = fixtures.get(i);
         // Use name getter of WaterFixture Object
             System.out.printf("Fixture %d: %s,  \n", i+1, fixture.getName());
             }
