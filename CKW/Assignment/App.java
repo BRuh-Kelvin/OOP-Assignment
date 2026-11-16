@@ -49,7 +49,7 @@ public class App {
                             System.out.println("");
 
                             // display fixture list
-                            household.displayFixtures(fixtureArrayList);
+                            household.displayFixtures();
 
                             break;
                         case "2":
@@ -92,8 +92,7 @@ public class App {
 
                     System.out.println("===== All Water Usage Records =====");
                     // Use getter to obtain record list from household obj
-                    ArrayList<WaterUsageRecord> recordList = household.getRecordArrayList();
-                    household.displayRecords(recordList);
+                    household.displayRecords();
 
                     break;
                 case "3":
