@@ -1,14 +1,19 @@
-package Assignment;
+package TWH.Assignment;
 
 public class ApplianceFixture extends WaterFixture {
     // Variables in ApplianceFixture
     private double waterFlowRate;
 
-    // Constructor, WaterFixture object creation with name, water flow rate and
-    // shower time
+    // Constructor, WaterFixture object creation with name, water flow rate
     public ApplianceFixture(String givenName, double givenWFR) {
         super(givenName); // Pass value to the constructor in WaterFixture
         waterFlowRate = givenWFR;
+    }
+
+    // Constructor, WaterFixture object creation with ("Unknown", 0.0)
+    public ApplianceFixture() {
+        super("Unknown"); // Pass value to the constructor in WaterFixture
+        waterFlowRate = 0.0;
     }
 
     // Object's method of getting water flow rate

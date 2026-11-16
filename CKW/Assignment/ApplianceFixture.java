@@ -1,19 +1,14 @@
-package Assignment;
+package CKW.Assignment;
 
-public class ShowerFixture extends WaterFixture {
-    // Variables in ShowerFixture
+public class ApplianceFixture extends WaterFixture {
+    // Variables in ApplianceFixture
     private double waterFlowRate;
 
-    // Constructor, WaterFixture object creation with name, water flow rate
-    public ShowerFixture(String givenName, double givenWFR) {
+    // Constructor, WaterFixture object creation with name, water flow rate and
+    // shower time
+    public ApplianceFixture(String givenName, double givenWFR) {
         super(givenName); // Pass value to the constructor in WaterFixture
         waterFlowRate = givenWFR;
-    }
-
-    // Default Constructor, WaterFixture object creation with ("Unknwon", 0.0)
-    public ShowerFixture() {
-        super("Unknown"); // Pass value to the constructor in WaterFixture
-        waterFlowRate = 0.0;
     }
 
     // Object's method of getting water flow rate
@@ -26,7 +21,6 @@ public class ShowerFixture extends WaterFixture {
         waterFlowRate = givenWaterFlowRate;
     }
 
-    // Water usage calculation
     @Override
     public double calculateWaterUsage(double minute) {
         return waterFlowRate * minute;

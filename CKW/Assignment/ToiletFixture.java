@@ -1,4 +1,4 @@
-package Assignment;
+package CKW.Assignment;
 
 public class ToiletFixture extends WaterFixture {
     // Variables in ToiletFixture

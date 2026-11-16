@@ -1,4 +1,4 @@
-package Assignment;
+package CKW.Assignment;
 
 public class WaterFixture {
     // Variable in WaterFixture
@@ -7,6 +7,11 @@ public class WaterFixture {
     // Constructor, WaterFixture object creation with name
     public WaterFixture(String givenName) {
         setName(givenName);
+    }
+
+    // Default Constructor, WaterFixture object creation with "Unknown"
+    public WaterFixture() {
+        name = "Unknown";
     }
 
     // Object's method of getting a name

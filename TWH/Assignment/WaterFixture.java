@@ -1,4 +1,4 @@
-package Assignment;
+package TWH.Assignment;
 
 public class WaterFixture {
     // Variable in WaterFixture

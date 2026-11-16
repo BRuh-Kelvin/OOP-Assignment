@@ -1,14 +1,20 @@
-package Assignment;
+package TWH.Assignment;
 
 public class ToiletFixture extends WaterFixture {
     // Variables in ToiletFixture
     private double waterUsageEachFlush;
 
-    // Constructor, WaterFixture object creation with name, water flow rate and
-    // shower time
+    // Constructor, WaterFixture object creation with name, water usage each flush
     public ToiletFixture(String givenName, double givenWUEF) {
         super(givenName); // Pass value to the constructor in WaterFixture
         waterUsageEachFlush = givenWUEF;
+    }
+
+    // Default Constructor, WaterFixture object creation with ("Unknown", 0.0)
+    // flush
+    public ToiletFixture() {
+        super("Unknown"); // Pass value to the constructor in WaterFixture
+        waterUsageEachFlush = 0.0;
     }
 
     // Object's method of getting water usage for each flush
