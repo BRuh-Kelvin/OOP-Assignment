@@ -9,6 +9,11 @@ public class WaterFixture {
         setName(givenName);
     }
 
+    // Default Constructor, WaterFixture object creation with "Unknown"
+    public WaterFixture() {
+        name = "Unknown";
+    }
+
     // Object's method of getting a name
     public String getName() {
         return name;

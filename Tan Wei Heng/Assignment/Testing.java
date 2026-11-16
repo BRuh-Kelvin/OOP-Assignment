@@ -12,12 +12,9 @@ public class Testing {
         System.out.print("Enter water flow rate (L/min): ");
         double flowRate = input.nextDouble();
 
-        System.out.print("Enter shower time (min): ");
-        double showerTime = input.nextDouble();
+        WaterFixture fixture = new ShowerFixture(name, flowRate);
 
-        WaterFixture fixture = new ShowerFixture(name, flowRate, showerTime);
-
-        System.out.print(fixture.getName() + " " + ((ShowerFixture) fixture).getShowerTime() + " "
+        System.out.print(fixture.getName() + " " + " "
                 + ((ShowerFixture) fixture).getWaterFlowRate());
     }
 }
