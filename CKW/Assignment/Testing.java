@@ -53,4 +53,34 @@ public class Testing {
 
         input.close();
     }
+
+    public void recordUsageProcess(Household household, Scanner input, ArrayList<WaterUsageRecord> records, ArrayList<WaterFixture> fixtureArrayList) {
+        // display fixture list
+        System.out.println("===== All Fixtures =====");
+        household.displayFixtures();
+    
+        System.out.println("Select a fixture:");
+            for (int i = 0; i < fixtureArrayList.size(); i++) {
+                System.out.println((i + 1) + ". " + fixtureArrayList.get(i).getName());
+            }
+        System.out.println("");
+
+        int fixtureIndex = input.nextInt();
+        input.nextLine(); // consume leftover newline
+
+        // Get usage date from user. I need to handle errors here, or process input to be accepeted even tho not exact form
+        System.out.print("Enter usage date (YYYY-MM-DD): ");
+        String dateInput = input.nextLine();
+                    
+        // Parse the user's input string into a LocalDate object
+        LocalDate date = LocalDate.parse(dateInput); 
+
+        // Get usage time from user
+        System.out.print("Enter usage (double): ");
+        double usage = input.nextDouble();
+
+        // Create record object for the selected water fixture object, with date, and using the selected water fixture object to calculate litres used
+        household.recordUsage(fixtureArrayList.get(fixtureIndex-1), date,  fixtureArrayList.get(fixtureIndex).calculateWaterUsage(usage));
+        return;
+    }
 }

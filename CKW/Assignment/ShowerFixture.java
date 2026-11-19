@@ -3,6 +3,8 @@ package CKW.Assignment;
 public class ShowerFixture extends WaterFixture {
     // Variables in ShowerFixture
     private double waterFlowRate;
+    // possibly a variable for total water usage, but not needed since it can be calculated with the method
+
 
     // Constructor, WaterFixture object creation with name, water flow rate
     public ShowerFixture(String givenName, double givenWFR) {
