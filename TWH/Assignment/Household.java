@@ -59,8 +59,4 @@ public class Household {
             System.out.printf("Fixture %d: %s \n", i+1, fixture.getName());
             }
         }
-    
-
-    
-
 }

@@ -60,10 +60,8 @@ public class Household {
         // Use ArrayList utilty method to obtain the WaterFixture Object
             WaterFixture fixture = fixtures.get(i);
         // Use name getter of WaterFixture Object
-            System.out.printf("Fixture %d: %s,  \n", i+1, fixture.getName());
+            System.out.printf("Fixture %d: %s  \n", i+1, fixture.getName());
             }
-             System.out.println("");
-
         }
 
 }

@@ -32,6 +32,7 @@ public class WaterUsageRecord {
 
     // Setter for Record Date
     public void setDate( LocalDate newDate) {
+        // need to add exceptions to control valid dates
         this.date = newDate;
     }
     

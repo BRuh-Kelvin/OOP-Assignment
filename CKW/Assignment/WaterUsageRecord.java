@@ -6,7 +6,7 @@ public class WaterUsageRecord {
     // private variables
     private WaterFixture fixture;
     private LocalDate date;
-    private Double litres;
+    private double litres;
 
     // WaterUsageRecord Object Constructor
     public WaterUsageRecord(WaterFixture fixture, LocalDate date, double litres) { // LocalDate Object String like "2026-11-13" in "format (YYYY-MM-DD)"
@@ -23,9 +23,9 @@ public class WaterUsageRecord {
     // Setter for Recorded Fixture
     public void setFixture(WaterFixture newFixture) {
         // Exeception that should be caught in the main loop
-        if (newFixture == null){
-            throw new IllegalArgumentException("Water fixture cannot be null.");
-        }
+        //if (newFixture == null){
+        //    throw new IllegalArgumentException("Water fixture cannot be null.");
+        // } Seemes like not needed
         this.fixture = newFixture;
     }
 
@@ -37,9 +37,9 @@ public class WaterUsageRecord {
     // Setter for Record Date // how to ensure valid date or allow users to enter valid date
     public void setDate( LocalDate newDate) {
         // Exeception that should be caught in the main loop
-        if (newDate == null){
-            throw new IllegalArgumentException("Date cannot be null.");
-        }
+        //if (newDate == null){
+        //    throw new IllegalArgumentException("Date cannot be null.");
+        //} seems like not needed
         this.date = newDate;
     }
     
@@ -49,13 +49,10 @@ public class WaterUsageRecord {
     }
 
     // Setter for recorded litres of water used
-    public void setLitres(Double newLitres) {
+    public void setLitres(double newLitres) {
         // Exeception that should be caught in the main loop
-        if (newLitres == null){
-            throw new IllegalArgumentException("Litres cannot be null.");
-        }
         if (newLitres < 0) {
-            throw new IllegalArgumentException("Litres of water used cannot be negative.");
+            throw new IllegalArgumentException("Litres of water used cannot be negative. Please try again with a valid amount of litres used (double)");
         }
         this.litres = newLitres;
     }
