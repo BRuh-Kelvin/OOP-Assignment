@@ -2,7 +2,7 @@ package CKW.Assignment;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Household {
+public class Household2d {
     // should i combine them togther as a 2 dimensional array
     //https://www.geeksforgeeks.org/java/multidimensional-collections-in-java/
     
@@ -16,7 +16,7 @@ public class Household {
 
 
 
-    private ArrayList<ArrayList<WaterUsageRecord>> a = new ArrayList<ArrayList<Object>>();
+    private ArrayList<ArrayList<WaterUsageRecord>> fixtureRecords = new ArrayList<ArrayList<WaterUsageRecord>>();
     
     // Default Constructor
     public Household() {
@@ -70,15 +70,6 @@ public class Household {
             }
         }
 
-    public double getTotal(){
 
-        double fixtureUsage = 0;
-
-        for (int i = 0; i < records.size(); i++) {
-        // Use ArrayList utilty method to obtain the WaterUsageRecord Objec
-            WaterUsageRecord record = records.get(i);
-
-        
-    }
-
+}
 }

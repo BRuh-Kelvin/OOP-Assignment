@@ -13,19 +13,32 @@ public class Testing {
 
         // should prb be a method in main
         WaterFixture fixture = new ShowerFixture("Shower 1", 12);
-        WaterFixture fixture1 = new ShowerFixture("Shower 2", 22);
-        WaterFixture fixture2 = new ShowerFixture("Shower 3", 11);
+        WaterFixture fixture3 = new ShowerFixture("Shower 2", 14);
+        ToiletFixture fixture1 = new ToiletFixture("Toilet 1", 22);
+        WaterFixture fixture2 = new ApplianceFixture("Appliance 1", 11);
 
         household.addFixture(fixture);
         household.addFixture(fixture1);
         household.addFixture(fixture2);
+        household.addFixture(fixture3);
 
-        recordUsageProcess(household, fixtureArrayList, input);
 
-        System.out.println("===== All Water Usage Records =====");
+        // Call this method to actually record using user input
+        // recordUsageProcess(household, fixtureArrayList, input);
+
+        // Hardcoding for testing
+        household.recordUsage(fixture, LocalDate.parse("2026-11-21"),  22.2);
+        household.recordUsage(fixture, LocalDate.parse("2026-11-21"),  22.2);
+        household.recordUsage(fixture1, LocalDate.parse("2026-11-23"),  1);
+        household.recordUsage(fixture1, LocalDate.parse("2026-11-25"),  2);
+        household.recordUsage(fixture2, LocalDate.parse("2026-11-26"),  5.2);
+        household.recordUsage(fixture2, LocalDate.parse("2026-11-27"),  26.2);
+        household.recordUsage(fixture3, LocalDate.parse("2026-11-27"),  22);
+
+
+        household.displayFixtures();
         household.displayRecords();   
-
-
+        household.waterUsageReport();   
         input.close();
     }
 
