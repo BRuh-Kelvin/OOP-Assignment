@@ -16,5 +16,7 @@ public class Testing {
 
         System.out.print(fixture.getName() + " " + " "
                 + ((ShowerFixture) fixture).getWaterFlowRate());
+
+        input.close();
     }
 }
