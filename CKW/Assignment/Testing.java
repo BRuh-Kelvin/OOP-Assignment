@@ -77,6 +77,7 @@ public class Testing {
                 System.out.println("That selected fixture does not exist as a recorded fixture. Try adding it as a fixture first.");
             } 
             // Exception for invalid input of negative litres, exception is thrown fro the WaterUsageRecord setLitres method
+            // Future exceptions for other errors
             catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
