@@ -29,9 +29,14 @@ public class WaterFixture {
         return 0;
     };
 
-    public double calculateToiletUsage(int numberOfFlushes) {
+    public double calculateWaterUsage(int minute) {
         return 0;
     };
+
+
+    // public double calculateToiletUsage(int numberOfFlushes) {
+    //     return 0;
+    // };
 
     // ?
 }

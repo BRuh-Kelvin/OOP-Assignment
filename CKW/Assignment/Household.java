@@ -34,12 +34,19 @@ public class Household {
     }
 
     // Add  WaterUsageRecord object to arraylist
+    // amount is based on each water fixture, if int prb need to truncate or handle coversion
     public void recordUsage(WaterFixture fixture, LocalDate date, double amount) {
         WaterUsageRecord record = new WaterUsageRecord(fixture, date, fixture.calculateWaterUsage(amount));
         records.add(record);
     }
 
+    public void recordUsage(ShowerFixture fixture, LocalDate date, int amount) {
+        WaterUsageRecord record = new WaterUsageRecord(fixture, date, fixture.calculateWaterUsage(amount));
+        records.add(record);
+    }
+
     public void displayRecords(){
+        System.out.println("===== All Water Usage Records =====");
         // Use for loop to iterate over each index in the recordList arraylist, where each index contains a WaterUsageRecord Object
         for (int i = 0; i < records.size(); i++) {
         // Use ArrayList utilty method to obtain the WaterUsageRecord Objec
@@ -66,15 +73,32 @@ public class Household {
             }
         }
 
-    public double getTotal(){
+    // Actually this is Hao Yan's part no
+    public void waterUsageReport(){
 
-        double fixtureUsage = 0;
+        System.out.println("==== Monthly Water Report ====");
 
-        for (int i = 0; i < records.size(); i++) {
-        // Use ArrayList utilty method to obtain the WaterUsageRecord Objec
-            WaterUsageRecord record = records.get(i);
+        for (WaterFixture fixture : fixtures){
+            double fixtureUsage = 0;   
+            for (WaterUsageRecord record : records) {         
+                if (record.getFixture() == fixture){
+                    fixtureUsage += record.getLitres();
+                }
+            }
+            System.out.printf("%-10s : %5.2f L \n", fixture.getName(), fixtureUsage);
 
-        
+        }
+        //// Other details
     }
 
+    // currently used
+     public double getWaterUsagePerFixture(WaterFixture fixture){
+        double fixtureUsage = 0;
+        for (WaterUsageRecord record : records) {            
+            if (record.getFixture() == fixture){
+                fixtureUsage += record.getLitres();
+            }
+        }
+        return fixtureUsage;
+    }
 }

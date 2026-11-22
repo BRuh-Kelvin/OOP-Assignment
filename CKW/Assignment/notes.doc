@@ -6,3 +6,4 @@ Features to implement:
 5. how to ensure users input correct date format.
 6. Allow users to store fixtures
 7. Calculate total water usage
+8. data validation for usage date such as date cannot be past month or year i guess

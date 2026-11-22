@@ -29,7 +29,7 @@ public class ToiletFixture extends WaterFixture {
 
     // Water usage calculation
     @Override
-    public double calculateToiletUsage(int numberOfFlushes) {
+    public double calculateWaterUsage(int numberOfFlushes) {
         return waterUsageEachFlush * numberOfFlushes;
     }
 
