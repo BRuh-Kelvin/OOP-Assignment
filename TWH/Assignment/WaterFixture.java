@@ -29,12 +29,13 @@ public class WaterFixture {
     }
 
     // Water usage calculation (For ShowerFixture and ApplianceFixture)
-    public double calculateWaterUsage(double minute) {
+    public double calculateWaterUsage(double amount) {
         return 0;
     };
 
-    public double calculateWaterUsage(int numberOfFlushes) {
-        return 0;
-    };
+    // Whole number requirement for calculateWaterUsage method
+    public boolean requiresWholeNumber() {
+        return true;
+    }
     // ?
 }

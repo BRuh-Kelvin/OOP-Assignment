@@ -15,7 +15,7 @@ public class Testing {
                 System.out.print("Enter water flow rate (L/min): ");
                 double flowRate = Double.parseDouble(input.nextLine().trim());
 
-                fixture = new ShowerFixture(name, flowRate);
+                fixture = new ToiletFixture(name, flowRate);
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a number.");
             } catch (IllegalArgumentException e) {
@@ -37,5 +37,7 @@ public class Testing {
 
         System.out.println(fixture.getName() + ": " + fixture.calculateWaterUsage(minute) + " L");
         input.close();
+
+        System.out.print(fixture.requiresWholeNumber());
     }
 }

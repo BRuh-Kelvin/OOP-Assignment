@@ -30,10 +30,16 @@ public class ApplianceFixture extends WaterFixture {
         }
     }
 
+    // Water usage calculation
     @Override
     public double calculateWaterUsage(double minute) {
         return waterFlowRate * minute;
     }
 
+    // Whole number requirement for calculateWaterUsage method
+    @Override
+    public boolean requiresWholeNumber() {
+        return true;
+    }
     // ?
 }

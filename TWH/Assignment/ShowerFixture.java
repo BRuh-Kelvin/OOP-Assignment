@@ -36,5 +36,10 @@ public class ShowerFixture extends WaterFixture {
         return waterFlowRate * minute;
     }
 
+    // Whole number requirement for calculateWaterUsage method
+    @Override
+    public boolean requiresWholeNumber() {
+        return false;
+    }
     // ?
 }

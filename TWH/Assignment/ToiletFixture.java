@@ -33,8 +33,14 @@ public class ToiletFixture extends WaterFixture {
 
     // Water usage calculation
     @Override
-    public double calculateWaterUsage(int numberOfFlushes) {
+    public double calculateWaterUsage(double numberOfFlushes) {
         return waterUsageEachFlush * numberOfFlushes;
+    }
+
+    // Whole number requirement for calculateWaterUsage method
+    @Override
+    public boolean requiresWholeNumber() {
+        return true;
     }
     // ?
 }
