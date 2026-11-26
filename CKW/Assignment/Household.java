@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Household {
-    // should i combine them togther as a 2 dimensional array
-    //https://www.geeksforgeeks.org/java/multidimensional-collections-in-java/
-    
     // Create array lists for WaterFixture objects
     private ArrayList<WaterFixture> fixtures = new ArrayList<WaterFixture>();
 
@@ -76,7 +73,7 @@ public class Household {
         // possible need to extract flow rate here as well
     public void displayFixtures(){
         System.out.println("");
-        System.out.println("Fixture List:");
+        System.out.println("===== All Fixtures =====");
         // Use for loop to iterate over each index in the fixtureArrayList, where each index contains a WaterFixture Object
         for (int i = 0; i < fixtures.size(); i++) {
         // Use ArrayList utilty method to obtain the WaterFixture Object
