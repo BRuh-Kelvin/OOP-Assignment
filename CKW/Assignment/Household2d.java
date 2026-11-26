@@ -14,13 +14,11 @@ public class Household2d {
     // format WaterFixture obj( String givenName, double givenWFR from subclass)
     private ArrayList<WaterUsageRecord> records = new ArrayList<WaterUsageRecord>();
 
-
-
     private ArrayList<ArrayList<WaterUsageRecord>> fixtureRecords = new ArrayList<ArrayList<WaterUsageRecord>>();
     
-    // Default Constructor
-    public Household() {
-    }
+    // // Default Constructor
+    // public Household2d {
+    // }
 
     // Getter for list of household water fixtures
     public ArrayList<WaterFixture> getFixtureArrayList() {
@@ -71,5 +69,4 @@ public class Household2d {
         }
 
 
-}
 }

@@ -7,7 +7,7 @@ public class ToiletFixture extends WaterFixture {
     // Constructor, WaterFixture object creation with name, water usage each flush
     public ToiletFixture(String givenName, double givenWUEF) {
         super(givenName); // Pass value to the constructor in WaterFixture
-        waterUsageEachFlush = givenWUEF;
+        setWaterUsageEachFlush(givenWUEF);
     }
 
     // Default Constructor, WaterFixture object creation with ("Unknown", 0.0)
@@ -24,15 +24,23 @@ public class ToiletFixture extends WaterFixture {
 
     // Object's method of setting water usage for each flush
     public void setWaterUsageEachFlush(double givenWaterUsageEachFlush) {
-        waterUsageEachFlush = givenWaterUsageEachFlush;
+        if (givenWaterUsageEachFlush < 0) {
+            throw new IllegalArgumentException("Water usage cannot be negative");
+        } else {
+            waterUsageEachFlush = givenWaterUsageEachFlush;
+        }
     }
 
     // Water usage calculation
     @Override
-    public double calculateWaterUsage(int numberOfFlushes) {
+    public double calculateWaterUsage(double numberOfFlushes) {
         return waterUsageEachFlush * numberOfFlushes;
     }
 
-
+    // Whole number requirement for calculateWaterUsage method
+    @Override
+    public boolean requiresWholeNumber() {
+        return true;
+    }
     // ?
 }

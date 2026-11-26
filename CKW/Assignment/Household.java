@@ -1,6 +1,7 @@
 package CKW.Assignment;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Household {
     // should i combine them togther as a 2 dimensional array
@@ -33,36 +34,43 @@ public class Household {
         fixtures.add(fixture);
     }
 
-    public void recordUsage(ToiletFixture fixture, LocalDate date, int amount) {
-        WaterUsageRecord record = new WaterUsageRecord(fixture, date, fixture.calculateWaterUsage(amount));
-        records.add(record);
-    }
-
-
     // Add  WaterUsageRecord object to arraylist
     // amount is based on each water fixture, if int prb need to truncate or handle coversion
     public void recordUsage(WaterFixture fixture, LocalDate date, double amount) {
-        if (fixture instanceof ToiletFixture) {
-            throw new IllegalArgumentException("Toilet usage must be an integer.");   
+        // Rejects negative usage amounts
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Usage must be greater than zero.");   
         } 
+        // Checks if the fixture uses whole integers, if yes, reject any non-whole number input
+        if (fixture.requiresWholeNumber() && amount != Math.floor(amount)) {
+            throw new IllegalArgumentException(fixture.getName() + " usage must be a whole number.");   
+        } 
+
         WaterUsageRecord record = new WaterUsageRecord(fixture, date, fixture.calculateWaterUsage(amount));
         records.add(record);
+        // sort records based on date
+        records.sort(Comparator.comparing(WaterUsageRecord::getDate));
     }
 
 
     public void displayRecords(){
-        System.out.println("===== All Water Usage Records =====");
+        System.out.println("=================================================");
+        System.out.println("============== Water Usage Records ==============");
+        System.out.println("=================================================");
+
+        System.out.println("   Date    ||       Fixture      ||   Usage (L)   ");
         // Use for loop to iterate over each index in the recordList arraylist, where each index contains a WaterUsageRecord Object
-        for (int i = 0; i < records.size(); i++) {
+        // for (int i = 0; i < records.size(); i++) {
+        for (WaterUsageRecord record : records){
         // Use ArrayList utilty method to obtain the WaterUsageRecord Objec
-            WaterUsageRecord record = records.get(i);
+            // WaterUsageRecord record = records.get(i);
         // Use date getter of WaterUsageRecord Object
-            System.out.println("Date: " + record.getDate());
         // Use fixture object getter of WaterUsageRecord Object. then use name getter of fixture object
-            System.out.println("Fixture: " + record.getFixture().getName());
-         // Use litres  getter of WaterUsageRecord Object. 
-            System.out.println("Water Consumed: " + record.getLitres() + " L\n");
+        // Use litres  getter of WaterUsageRecord Object. 
+            System.out.printf("%-10s || %-18s || %-10.2f \n", record.getDate(), record.getFixture().getName(),record.getLitres());
             }
+        System.out.println("=================================================");
+        System.out.println("");
         }
 
         // possible need to extract flow rate here as well
@@ -76,6 +84,7 @@ public class Household {
         // Use name getter of WaterFixture Object
             System.out.printf("Fixture %d: %s  \n", i+1, fixture.getName());
             }
+        System.out.println("");
         }
 
     // Actually this is Hao Yan's part no
@@ -93,10 +102,12 @@ public class Household {
             System.out.printf("%-10s : %5.2f L \n", fixture.getName(), fixtureUsage);
 
         }
-        //// Other details
+        //// Other details add on pls Haoyan
+        System.out.println("");
+
     }
 
-    // currently used
+    // can be deleted if not used
      public double getWaterUsagePerFixture(WaterFixture fixture){
         double fixtureUsage = 0;
         for (WaterUsageRecord record : records) {            
