@@ -25,7 +25,7 @@ public class ApplianceFixture extends WaterFixture {
     // Object's method of setting water flow rate
     @Override
     public void setWaterUsage(double givenWaterUsage) {
-        if (givenWaterUsage < 0) {
+        if (givenWaterUsage <= 0) {
             throw new IllegalArgumentException("Water flow rate cannot be negative");
         } else {
             waterFlowRate = givenWaterUsage;

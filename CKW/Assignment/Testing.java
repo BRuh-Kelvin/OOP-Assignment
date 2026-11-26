@@ -20,10 +20,6 @@ public class Testing {
         household.addFixture(fixture1);
         household.addFixture(fixture2);
 
-
-        // Call this method to actually record using user input
-        //recordUsageProcess(household, fixtureArrayList, input);
-
         // Hardcoding for testing
         household.recordUsage(fixture, LocalDate.parse("2026-11-30"),  22.2);
         household.recordUsage(fixture, LocalDate.parse("2026-11-21"),  22.2);
@@ -36,6 +32,11 @@ public class Testing {
         household.displayRecords();   
         household.waterUsageReport();   
         System.out.printf("Individual fixture usage of Appliance 1: %.2f L", household.getWaterUsagePerFixture(fixture2));
+
+
+        // Call this method to actually record using user input
+        recordUsageProcess(household, fixtureArrayList, input);
+
         input.close();
     }
 
@@ -63,13 +64,13 @@ public class Testing {
                 System.out.print("Select Fixture: ");
                 int fixtureIndex = Integer.parseInt(input.nextLine()); // use nextLine so that \n newlince charecter is consumed, then parse for int
 
-                // Parse the user's input string into a LocalDate object
-                System.out.print("Enter usage date (YYYY-MM-DD): ");
-                LocalDate date = LocalDate.parse(input.nextLine());
-
                 // Get usage amount from user
                 System.out.print("Enter usage (double): ");
                 double usage = Double.parseDouble(input.nextLine());
+
+                // Parse the user's input string into a LocalDate object
+                System.out.print("Enter usage date (YYYY-MM-DD): ");
+                LocalDate date = LocalDate.parse(input.nextLine());
 
                 // Create record object for the selected water fixture object, with date, and using the selected water fixture object to calculate litres used
                 household.recordUsage(fixtureArrayList.get(fixtureIndex-1), date,  usage);
@@ -94,6 +95,7 @@ public class Testing {
             catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+            System.out.println("");
         }
     }
 }

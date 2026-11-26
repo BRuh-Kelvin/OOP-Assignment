@@ -42,6 +42,10 @@ public class Household {
         if (fixture.requiresWholeNumber() && amount != Math.floor(amount)) {
             throw new IllegalArgumentException(fixture.getName() + " usage must be a whole number.");   
         } 
+        // Checks if the input date is in the same month, if not throw an exception
+        if (date.getMonth() != LocalDate.now().getMonth() || date.getYear() != LocalDate.now().getYear()){
+            throw new IllegalArgumentException("Date must be in the current month.");   
+        }
 
         WaterUsageRecord record = new WaterUsageRecord(fixture, date, fixture.calculateWaterUsage(amount));
         records.add(record);
