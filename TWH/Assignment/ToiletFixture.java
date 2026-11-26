@@ -25,7 +25,7 @@ public class ToiletFixture extends WaterFixture {
     // Object's method of setting water usage for each flush
     @Override
     public void setWaterUsage(double givenWaterUsage) {
-        if (givenWaterUsage < 0) {
+        if (givenWaterUsage <= 0) {
             throw new IllegalArgumentException("Water usage cannot be negative");
         } else {
             waterUsageEachFlush = givenWaterUsage;
