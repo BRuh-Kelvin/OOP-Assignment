@@ -22,19 +22,20 @@ public class Testing {
 
 
         // Call this method to actually record using user input
-        // recordUsageProcess(household, fixtureArrayList, input);
+        //recordUsageProcess(household, fixtureArrayList, input);
 
         // Hardcoding for testing
-        household.recordUsage(fixture, LocalDate.parse("2026-11-21"),  22.2);
+        household.recordUsage(fixture, LocalDate.parse("2026-11-30"),  22.2);
         household.recordUsage(fixture, LocalDate.parse("2026-11-21"),  22.2);
         household.recordUsage(fixture1, LocalDate.parse("2026-11-23"),  1);
         household.recordUsage(fixture1, LocalDate.parse("2026-11-25"),  2);
-        household.recordUsage(fixture2, LocalDate.parse("2026-11-26"),  5.2);
-        household.recordUsage(fixture2, LocalDate.parse("2026-11-27"),  26.2);
+        household.recordUsage(fixture2, LocalDate.parse("2026-11-16"),  5);
+        household.recordUsage(fixture2, LocalDate.parse("2026-11-27"),  26);
 
         household.displayFixtures();
         household.displayRecords();   
         household.waterUsageReport();   
+        System.out.printf("Individual fixture usage of Appliance 1: %.2f L", household.getWaterUsagePerFixture(fixture2));
         input.close();
     }
 
@@ -44,7 +45,7 @@ public class Testing {
         System.out.print("===== All Fixtures =====");
         household.displayFixtures();
     
-        // Display fixture objects recorded in fixture ArrayList for users to choose
+        // Display fixture objects recorded in fixture ArrayList for users to choose (deprecated)
         // System.out.print("Select a fixture:");
         //     for (int i = 0; i < fixtureArrayList.size(); i++) {
         //         System.out.printf("%d. %s ",(i + 1), fixtureArrayList.get(i).getName());
@@ -57,7 +58,6 @@ public class Testing {
                 System.out.print("Select Fixture: ");
                 int fixtureIndex = Integer.parseInt(input.nextLine()); // use nextLine so that \n newlince charecter is consumed, then parse for int
 
-                // Get usage date from user. I need to handle errors here, or process input to be accepeted even tho not exact form
                 // Parse the user's input string into a LocalDate object
                 System.out.print("Enter usage date (YYYY-MM-DD): ");
                 LocalDate date = LocalDate.parse(input.nextLine());
@@ -67,7 +67,6 @@ public class Testing {
                 double usage = Double.parseDouble(input.nextLine());
 
                 // Create record object for the selected water fixture object, with date, and using the selected water fixture object to calculate litres used
-                // or use WaterFixture selected = fixtureArrayList.get(fixtureIndex - 1);
                 household.recordUsage(fixtureArrayList.get(fixtureIndex-1), date,  usage);
 
                 System.out.println("");

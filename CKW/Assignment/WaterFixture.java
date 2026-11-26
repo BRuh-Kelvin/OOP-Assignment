@@ -21,17 +21,21 @@ public class WaterFixture {
 
     // Ensure valid names are entered
     public void setName(String enteredName) {
-        name = enteredName;
+        if (enteredName == null) {
+            throw new IllegalArgumentException("Fixture name cannot be empty");
+        } else {
+            name = enteredName;
+        }
     }
 
     // Water usage calculation (For ShowerFixture and ApplianceFixture)
-    public double calculateWaterUsage(double minute) {
+    public double calculateWaterUsage(double amount) {
         return 0;
     };
 
-    public double calculateWaterUsage(int minute) {
-        return 0;
-    };
-
+    // Whole number requirement for calculateWaterUsage method
+    public boolean requiresWholeNumber() {
+        return true;
+    }
     // ?
 }
