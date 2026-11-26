@@ -7,7 +7,7 @@ public class ShowerFixture extends WaterFixture {
     // Constructor, WaterFixture object creation with name, water flow rate
     public ShowerFixture(String givenName, double givenWFR) {
         super(givenName); // Pass value to the constructor in WaterFixture
-        setWaterFlowRate(givenWFR);
+        setWaterUsage(givenWFR);
     }
 
     // Default Constructor, WaterFixture object creation with ("Unknwon", 0.0)
@@ -17,16 +17,18 @@ public class ShowerFixture extends WaterFixture {
     }
 
     // Object's method of getting water flow rate
-    public double getWaterFlowRate() {
+    @Override
+    public double getWaterUsage() {
         return waterFlowRate;
     }
 
     // Object's method of setting water flow rate
-    public void setWaterFlowRate(double givenWaterFlowRate) {
-        if (givenWaterFlowRate < 0) {
+    @Override
+    public void setWaterUsage(double givenWaterUsage) {
+        if (givenWaterUsage < 0) {
             throw new IllegalArgumentException("Water flow rate cannot be negative");
         } else {
-            waterFlowRate = givenWaterFlowRate;
+            waterFlowRate = givenWaterUsage;
         }
     }
 

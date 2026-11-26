@@ -11,7 +11,7 @@ public class App {
         Household household = new Household();
         Scanner input = new Scanner(System.in);
         ArrayList<WaterFixture> fixtureArrayList = household.getFixtureArrayList();
-        String option = "";
+        int option = 0;
 
         outerloop:
         while (true) {
@@ -24,84 +24,23 @@ public class App {
             System.out.print("(Option 1-5): ");
 
 
-            option = input.nextLine();
-            input.nextLine(); // consume leftover newline
+            option = Integer.parseInt(input.nextLine());
+            System.out.println("");
+
             switch (option) {
-                case "1":
-                    // Add fixtures (probably and inner case switch of if else gate to choose what type of fixture) or links to a method
-                    String inputFixture = "";
-                    System.out.println("Choose Type of Water Fixture to add. (1-3)");
-                    System.out.println("1. Shower");
-                    System.out.println("2. Toilet");
-                    System.out.println("3. General Water Appliance (Whole number usage)");
-
-                    inputFixture = input.nextLine();
-                    switch(inputFixture){
-                        case "1":
-                            System.out.print("Enter Name: ");
-                            String name = input.nextLine();
-
-                            System.out.print("Enter water flow rate (L/min): ");
-                            double flowRate = input.nextDouble();
-
-                            WaterFixture fixture = new ShowerFixture(name, flowRate);
-                            System.out.println("Fixture created:" + fixture.getName() + " " + fixture.getWaterFlowRate());
-                            household.addFixture(fixture);
-
-                            System.out.println("");
-
-                            // display fixture list
-                            household.displayFixtures();
-                            break;
-                        case "2":
-                            // Fixture 2
-                            break;
-                        case "3":
-                            // Fixture 3
-                    }
-                    break;
-                case "2":
+                case 1:
+                    addFixtureProcess(household, fixtureArrayList, input);
+                break;
+                case 2:
                     // Record water usage
-
- 
-                    if (fixtureArrayList.isEmpty()) {
-                        System.out.println("No fixtures registered. Add one first.");
-                    } else {
-                        System.out.println("Select a fixture:");
-                        for (int i = 0; i < fixtureArrayList.size(); i++) {
-                            System.out.println((i + 1) + ". " + fixtureArrayList.get(i).getName());
-                        }
-                    }
-
-                    int fixtureIndex = input.nextInt();
-                    input.nextLine(); // consume leftover newline
-
-                    // Get usage date from user
-                    System.out.print("Enter usage date (YYYY-MM-DD): ");
-                    String dateInput = input.nextLine();
-                    input.nextLine(); // consume leftover newline
-                    
-                    // Parse the user's input string into a LocalDate object
-                    LocalDate date = LocalDate.parse(dateInput); 
-
-                     // Get usage time from user
-                    System.out.print("Enter usage (double): ");
-                    double usage = input.nextDouble();
-
-                    // Create record object for the selected water fixture object, with date, and using the selected water fixture object to calculate litres used
-                    household.recordUsage(fixtureArrayList.get(fixtureIndex), date,  fixtureArrayList.get(fixtureIndex).calculateWaterUsage(usage));
-
-                    System.out.println("===== All Water Usage Records =====");
-                    // Use getter to obtain record list from household obj
-                    household.displayRecords();
-
+                    recordUsageProcess(household, fixtureArrayList, input);
                     break;
-                case "3":
+                case 3:
                     // View total consumption and estimated cost 
-                case "4":
+                case 4:
                     // Show high-consumption fixtures and saving tips 
                     break;
-                case "5":
+                case 5:
                     // Exit while loop
                     break outerloop;
                 default:
@@ -112,19 +51,66 @@ public class App {
     input.close();
     }
 
+    public static void addFixtureProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
+        // Add fixtures (probably and inner case switch of if else gate to choose what type of fixture) or links to a method
+        int inputFixture = 0;
+        WaterFixture fixture;
+        System.out.println("1. Shower");
+        System.out.println("2. Toilet");
+        System.out.println("3. General Water Appliance (Whole number usage)");
+        System.out.print("Choose Type of Water Fixture to add. (1-3): ");
+
+        try{
+            inputFixture = Integer.parseInt(input.nextLine());
+            System.out.print("Enter Name: ");
+            String name = input.nextLine().trim();
+            System.out.print("Enter water usage rate (L/unit): ");
+            double usageRate = 0;
+            usageRate = Double.parseDouble(input.nextLine());
+
+            switch(inputFixture){
+                case 1:
+                    fixture = new ShowerFixture(name, usageRate);
+                    System.out.println("Shower Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    household.addFixture(fixture);
+                    break;
+
+                case 2:
+                    fixture = new ToiletFixture(name, usageRate);
+                    System.out.println("Toilet Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    household.addFixture(fixture);
+                    break;
+
+                case 3:
+                    fixture = new ApplianceFixture(name, usageRate);
+                    System.out.println("Appliancne Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    household.addFixture(fixture);
+                    break;
+                default:
+                    System.out.println("Invalid Option! Please try again.");
+                    break;
+            }
+            System.out.println("");
+            household.displayFixtures();
+
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a number.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid input: " + e.getMessage());
+        }
+    }
+
 
     public static void recordUsageProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
         // Display fixture list
-        System.out.print("===== All Fixtures =====");
-        household.displayFixtures();
-    
-        // Display fixture objects recorded in fixture ArrayList for users to choose (deprecated)
-        // System.out.print("Select a fixture:");
-        //     for (int i = 0; i < fixtureArrayList.size(); i++) {
-        //         System.out.printf("%d. %s ",(i + 1), fixtureArrayList.get(i).getName());
-        //     }
-
-        System.out.println("");
+ 
+        if (fixtureArrayList.isEmpty()) {
+            System.out.println("No fixtures registered. Add one first.");
+        } 
+        else {
+            System.out.println("Select a fixture:");
+            household.displayFixtures();
+        }
         while(true){
             // Use try... catch to handle errors so the program does not crash
             try{
@@ -136,7 +122,7 @@ public class App {
                 LocalDate date = LocalDate.parse(input.nextLine());
 
                 // Get usage amount from user
-                System.out.print("Enter usage (double): ");
+                System.out.print("Enter usage: ");
                 double usage = Double.parseDouble(input.nextLine());
 
                 // Create record object for the selected water fixture object, with date, and using the selected water fixture object to calculate litres used
@@ -165,24 +151,4 @@ public class App {
         }
     }
 
-    public static String, double addFixtureInputProcess(Scanner input) {
-
-        re
-
-        while (fixture == null) {
-            try {
-                System.out.print("Enter Name: ");
-                String name = input.nextLine();
-
-                System.out.print("Enter water flow rate (L/min): ");
-                double flowRate = Double.parseDouble(input.nextLine().trim());
-
-                fixture = new ToiletFixture(name, flowRate);
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a number.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid input: " + e.getMessage());
-            }
-
 }
-

@@ -42,8 +42,13 @@ public class Testing {
 
     public static void recordUsageProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
         // Display fixture list
-        System.out.print("===== All Fixtures =====");
-        household.displayFixtures();
+        if (fixtureArrayList.isEmpty()) {
+            System.out.println("No fixtures registered. Add one first.");
+        } 
+        else {
+            System.out.println("Select a fixture:");
+            household.displayFixtures();
+        }
     
         // Display fixture objects recorded in fixture ArrayList for users to choose (deprecated)
         // System.out.print("Select a fixture:");
