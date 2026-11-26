@@ -44,7 +44,7 @@ public class Household {
         } 
         // Checks if the input date is in the same month, if not throw an exception
         if (date.getMonth() != LocalDate.now().getMonth() || date.getYear() != LocalDate.now().getYear()){
-            throw new IllegalArgumentException("Date must be in the current month.");   
+            throw new IllegalArgumentException("Date must be in the current month and year.");   
         }
 
         WaterUsageRecord record = new WaterUsageRecord(fixture, date, fixture.calculateWaterUsage(amount));
