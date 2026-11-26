@@ -14,6 +14,16 @@ public class WaterFixture {
         name = "Unknown";
     }
 
+    // Object's method of getting water usage
+    public double getWaterUsage() {
+        return 0;
+    }
+
+    // Object's method of setting water usage
+    public void setWaterUsage(double givenWaterUsage) {
+
+    }
+
     // Object's method of getting a name
     public String getName() {
         return name;
