@@ -33,17 +33,22 @@ public class Household {
         fixtures.add(fixture);
     }
 
-    // Add  WaterUsageRecord object to arraylist
-    // amount is based on each water fixture, if int prb need to truncate or handle coversion
-    public void recordUsage(WaterFixture fixture, LocalDate date, double amount) {
+    public void recordUsage(ToiletFixture fixture, LocalDate date, int amount) {
         WaterUsageRecord record = new WaterUsageRecord(fixture, date, fixture.calculateWaterUsage(amount));
         records.add(record);
     }
 
-    public void recordUsage(ShowerFixture fixture, LocalDate date, int amount) {
+
+    // Add  WaterUsageRecord object to arraylist
+    // amount is based on each water fixture, if int prb need to truncate or handle coversion
+    public void recordUsage(WaterFixture fixture, LocalDate date, double amount) {
+        if (fixture instanceof ToiletFixture) {
+            throw new IllegalArgumentException("Toilet usage must be an integer.");   
+        } 
         WaterUsageRecord record = new WaterUsageRecord(fixture, date, fixture.calculateWaterUsage(amount));
         records.add(record);
     }
+
 
     public void displayRecords(){
         System.out.println("===== All Water Usage Records =====");

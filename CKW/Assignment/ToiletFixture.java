@@ -33,5 +33,6 @@ public class ToiletFixture extends WaterFixture {
         return waterUsageEachFlush * numberOfFlushes;
     }
 
+
     // ?
 }

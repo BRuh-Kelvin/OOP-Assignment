@@ -13,14 +13,12 @@ public class Testing {
 
         // should prb be a method in main
         WaterFixture fixture = new ShowerFixture("Shower 1", 12);
-        WaterFixture fixture3 = new ShowerFixture("Shower 2", 14);
-        ToiletFixture fixture1 = new ToiletFixture("Toilet 1", 22);
+        WaterFixture fixture1 = new ToiletFixture("Toilet 1", 22);
         WaterFixture fixture2 = new ApplianceFixture("Appliance 1", 11);
 
         household.addFixture(fixture);
         household.addFixture(fixture1);
         household.addFixture(fixture2);
-        household.addFixture(fixture3);
 
 
         // Call this method to actually record using user input
@@ -33,8 +31,6 @@ public class Testing {
         household.recordUsage(fixture1, LocalDate.parse("2026-11-25"),  2);
         household.recordUsage(fixture2, LocalDate.parse("2026-11-26"),  5.2);
         household.recordUsage(fixture2, LocalDate.parse("2026-11-27"),  26.2);
-        household.recordUsage(fixture3, LocalDate.parse("2026-11-27"),  22);
-
 
         household.displayFixtures();
         household.displayRecords();   
@@ -72,7 +68,7 @@ public class Testing {
 
                 // Create record object for the selected water fixture object, with date, and using the selected water fixture object to calculate litres used
                 // or use WaterFixture selected = fixtureArrayList.get(fixtureIndex - 1);
-                household.recordUsage(fixtureArrayList.get(fixtureIndex-1), date,  fixtureArrayList.get(fixtureIndex-1).calculateWaterUsage(usage));
+                household.recordUsage(fixtureArrayList.get(fixtureIndex-1), date,  usage);
 
                 System.out.println("");
                 break; // only reached if nothing above threw an exception
