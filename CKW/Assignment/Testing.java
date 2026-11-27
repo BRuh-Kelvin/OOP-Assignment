@@ -104,9 +104,9 @@ public class Testing {
   public static void addFixtureProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
         int inputFixture = 0;
         WaterFixture fixture;
-        System.out.println("1. Shower");
-        System.out.println("2. Toilet");
-        System.out.println("3. General Water Appliance (Whole number usage)");
+        System.out.println("1. Shower (L/minute)");
+        System.out.println("2. Toilet (L/flush)");
+        System.out.println("3. General Water Appliance (L/whole number unit)");
         System.out.print("Choose Type of Water Fixture to add. (1-3): ");
 
         try{
@@ -134,19 +134,19 @@ public class Testing {
             switch(inputFixture){
                 case 1:
                     fixture = new ShowerFixture(name, usageRate);
-                    System.out.println("Shower Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.printf("Shower Fixture named (%s) with a water usage rate of (%.2f) L/minute was created.\n" ,fixture.getName() ,fixture.getWaterUsageRate());
                     household.addFixture(fixture);
                     break;
 
                 case 2:
                     fixture = new ToiletFixture(name, usageRate);
-                    System.out.println("Toilet Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.printf("Toilet Fixture named (%s) with a water usage rate of (%.2f) L/flush was created.\n " ,fixture.getName() ,fixture.getWaterUsageRate());
                     household.addFixture(fixture);
                     break;
 
                 case 3:
                     fixture = new ApplianceFixture(name, usageRate);
-                    System.out.println("Appliance    Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.printf("Appliance Type Fixture named (%s) with a water usage rate of (%.2f) L/unit was created.\n " ,fixture.getName() ,fixture.getWaterUsageRate());
                     household.addFixture(fixture);
                     break;
                 default:

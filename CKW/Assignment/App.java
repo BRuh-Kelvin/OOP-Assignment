@@ -87,19 +87,19 @@ public class App {
             switch(inputFixture){
                 case 1:
                     fixture = new ShowerFixture(name, usageRate);
-                    System.out.println("Shower Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.println("Shower Fixture created:" + fixture.getName() + " " + fixture.getWaterUsageRate());
                     household.addFixture(fixture);
                     break;
 
                 case 2:
                     fixture = new ToiletFixture(name, usageRate);
-                    System.out.println("Toilet Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.println("Toilet Fixture created:" + fixture.getName() + " " + fixture.getWaterUsageRate());
                     household.addFixture(fixture);
                     break;
 
                 case 3:
                     fixture = new ApplianceFixture(name, usageRate);
-                    System.out.println("Appliance    Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.println("Appliance    Fixture created:" + fixture.getName() + " " + fixture.getWaterUsageRate());
                     household.addFixture(fixture);
                     break;
                 default:
