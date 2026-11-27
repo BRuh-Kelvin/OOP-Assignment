@@ -28,14 +28,16 @@ public class Testing {
         household.recordUsage(fixture2, LocalDate.parse("2026-11-16"),  5);
         household.recordUsage(fixture2, LocalDate.parse("2026-11-27"),  26);
 
-        household.displayFixtures();
-        household.displayRecords();   
-        household.waterUsageReport();   
-        System.out.printf("Individual fixture usage of Appliance 1: %.2f L \n", household.getWaterUsagePerFixture(fixture2));
+        // household.displayFixtures();
+        // household.displayRecords();   
+        // household.waterUsageReport();   
+        // System.out.printf("Individual fixture usage of Appliance 1: %.2f L \n", household.getWaterUsagePerFixture(fixture2));
 
 
         // Call this method to actually record using user input
-        recordUsageProcess(household, fixtureArrayList, input);
+        // recordUsageProcess(household, fixtureArrayList, input);
+
+        addFixtureProcess(household, fixtureArrayList, input);
 
         input.close();
     }
@@ -96,6 +98,68 @@ public class Testing {
                 System.out.println(e.getMessage());
             }
             System.out.println("");
+        }
+    }
+
+  public static void addFixtureProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
+        int inputFixture = 0;
+        WaterFixture fixture;
+        System.out.println("1. Shower");
+        System.out.println("2. Toilet");
+        System.out.println("3. General Water Appliance (Whole number usage)");
+        System.out.print("Choose Type of Water Fixture to add. (1-3): ");
+
+        try{
+            inputFixture = Integer.parseInt(input.nextLine());
+
+            // Validation to ensure user selects a valid fixture type
+            if(inputFixture < 1 || inputFixture > 3){
+                throw new IllegalArgumentException("Fixture type must be 1, 2, or 3.");
+            }
+
+            System.out.print("Enter Name: ");
+            String name = input.nextLine().trim();
+
+            // Validation to ensure each water fixture object has a unique name.
+            for (WaterFixture fixtureObject : fixtureArrayList){
+                if (name.equals(fixtureObject.getName())){
+                    throw new IllegalArgumentException ("Fixture with same name already exists!");
+                }
+            }
+
+            System.out.print("Enter water usage rate (L/unit): ");
+            double usageRate = 0;
+            usageRate = Double.parseDouble(input.nextLine());
+
+            switch(inputFixture){
+                case 1:
+                    fixture = new ShowerFixture(name, usageRate);
+                    System.out.println("Shower Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    household.addFixture(fixture);
+                    break;
+
+                case 2:
+                    fixture = new ToiletFixture(name, usageRate);
+                    System.out.println("Toilet Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    household.addFixture(fixture);
+                    break;
+
+                case 3:
+                    fixture = new ApplianceFixture(name, usageRate);
+                    System.out.println("Appliance    Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    household.addFixture(fixture);
+                    break;
+                default:
+                    System.out.println("Invalid Option! Please try again.");
+                    break;
+            }
+            System.out.println("");
+            household.displayFixtures();
+
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid number.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid input: " + e.getMessage());
         }
     }
 }

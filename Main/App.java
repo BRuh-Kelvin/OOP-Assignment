@@ -37,6 +37,9 @@ public class App {
                     break;
                 case 3:
                     // View total consumption and estimated cost 
+                    household.waterUsageReport();
+                    household.displayFixtures();
+                    household.displayRecords();
                 case 4:
                     // Show high-consumption fixtures and saving tips 
                     break;
@@ -52,7 +55,6 @@ public class App {
     }
 
     public static void addFixtureProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
-        // Add fixtures (probably and inner case switch of if else gate to choose what type of fixture) or links to a method
         int inputFixture = 0;
         WaterFixture fixture;
         System.out.println("1. Shower");
@@ -62,8 +64,22 @@ public class App {
 
         try{
             inputFixture = Integer.parseInt(input.nextLine());
+
+            // Validation to ensure user selects a valid fixture type
+            if(inputFixture < 1 || inputFixture > 3){
+                throw new IllegalArgumentException("Fixture type must be 1, 2, or 3.");
+            }
+
             System.out.print("Enter Name: ");
             String name = input.nextLine().trim();
+
+            // Validation to ensure each water fixture object has a unique name.
+            for (WaterFixture fixtureObject : fixtureArrayList){
+                if (name.equals(fixtureObject.getName())){
+                    throw new IllegalArgumentException ("Fixture with same name already exists!");
+                }
+            }
+
             System.out.print("Enter water usage rate (L/unit): ");
             double usageRate = 0;
             usageRate = Double.parseDouble(input.nextLine());
@@ -83,7 +99,7 @@ public class App {
 
                 case 3:
                     fixture = new ApplianceFixture(name, usageRate);
-                    System.out.println("Appliancne Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.println("Appliance    Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
                     household.addFixture(fixture);
                     break;
                 default:
@@ -94,7 +110,7 @@ public class App {
             household.displayFixtures();
 
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a number.");
+            System.out.println("Please enter a valid number.");
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid input: " + e.getMessage());
         }
@@ -148,7 +164,6 @@ public class App {
             catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-            System.out.println("");
         }
     }
 
