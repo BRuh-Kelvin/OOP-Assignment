@@ -31,7 +31,7 @@ public class Testing {
         household.displayFixtures();
         household.displayRecords();   
         household.waterUsageReport();   
-        System.out.printf("Individual fixture usage of Appliance 1: %.2f L", household.getWaterUsagePerFixture(fixture2));
+        System.out.printf("Individual fixture usage of Appliance 1: %.2f L \n", household.getWaterUsagePerFixture(fixture2));
 
 
         // Call this method to actually record using user input
@@ -47,7 +47,7 @@ public class Testing {
             System.out.println("No fixtures registered. Add one first.");
         } 
         else {
-            System.out.println("Select a fixture:");
+            System.out.println("==== Record Water Usage ====");
             household.displayFixtures();
         }
     
@@ -61,7 +61,7 @@ public class Testing {
         while(true){
             // Use try... catch to handle errors so the program does not crash
             try{
-                System.out.print("Select Fixture: ");
+                System.out.print("Select a fixture to add usage record: ");
                 int fixtureIndex = Integer.parseInt(input.nextLine()); // use nextLine so that \n newlince charecter is consumed, then parse for int
 
                 // Get usage amount from user

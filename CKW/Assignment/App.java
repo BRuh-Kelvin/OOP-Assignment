@@ -37,6 +37,9 @@ public class App {
                     break;
                 case 3:
                     // View total consumption and estimated cost 
+                    household.waterUsageReport();
+                    household.displayFixtures();
+                    household.displayRecords();
                 case 4:
                     // Show high-consumption fixtures and saving tips 
                     break;
@@ -53,6 +56,7 @@ public class App {
 
     public static void addFixtureProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
         // Add fixtures (probably and inner case switch of if else gate to choose what type of fixture) or links to a method
+        // need to add a guard to prevent fixtures having the same name
         int inputFixture = 0;
         WaterFixture fixture;
         System.out.println("1. Shower");
@@ -83,7 +87,7 @@ public class App {
 
                 case 3:
                     fixture = new ApplianceFixture(name, usageRate);
-                    System.out.println("Appliancne Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.println("Appliance    Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
                     household.addFixture(fixture);
                     break;
                 default:
