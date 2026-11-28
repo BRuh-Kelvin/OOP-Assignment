@@ -20,10 +20,6 @@ public class Testing {
         household.addFixture(fixture1);
         household.addFixture(fixture2);
 
-
-        // Call this method to actually record using user input
-        //recordUsageProcess(household, fixtureArrayList, input);
-
         // Hardcoding for testing
         household.recordUsage(fixture, LocalDate.parse("2026-11-30"),  22.2);
         household.recordUsage(fixture, LocalDate.parse("2026-11-21"),  22.2);
@@ -32,10 +28,17 @@ public class Testing {
         household.recordUsage(fixture2, LocalDate.parse("2026-11-16"),  5);
         household.recordUsage(fixture2, LocalDate.parse("2026-11-27"),  26);
 
-        household.displayFixtures();
-        household.displayRecords();   
-        household.waterUsageReport();   
-        System.out.printf("Individual fixture usage of Appliance 1: %.2f L", household.getWaterUsagePerFixture(fixture2));
+        // household.displayFixtures();
+        // household.displayRecords();   
+        // household.waterUsageReport();   
+        // System.out.printf("Individual fixture usage of Appliance 1: %.2f L \n", household.getWaterUsagePerFixture(fixture2));
+
+
+        // Call this method to actually record using user input
+        // recordUsageProcess(household, fixtureArrayList, input);
+
+        addFixtureProcess(household, fixtureArrayList, input);
+
         input.close();
     }
 
@@ -46,7 +49,7 @@ public class Testing {
             System.out.println("No fixtures registered. Add one first.");
         } 
         else {
-            System.out.println("Select a fixture:");
+            System.out.println("==== Record Water Usage ====");
             household.displayFixtures();
         }
     
@@ -60,16 +63,16 @@ public class Testing {
         while(true){
             // Use try... catch to handle errors so the program does not crash
             try{
-                System.out.print("Select Fixture: ");
+                System.out.print("Select a fixture to add usage record: ");
                 int fixtureIndex = Integer.parseInt(input.nextLine()); // use nextLine so that \n newlince charecter is consumed, then parse for int
-
-                // Parse the user's input string into a LocalDate object
-                System.out.print("Enter usage date (YYYY-MM-DD): ");
-                LocalDate date = LocalDate.parse(input.nextLine());
 
                 // Get usage amount from user
                 System.out.print("Enter usage (double): ");
                 double usage = Double.parseDouble(input.nextLine());
+
+                // Parse the user's input string into a LocalDate object
+                System.out.print("Enter usage date (YYYY-MM-DD): ");
+                LocalDate date = LocalDate.parse(input.nextLine());
 
                 // Create record object for the selected water fixture object, with date, and using the selected water fixture object to calculate litres used
                 household.recordUsage(fixtureArrayList.get(fixtureIndex-1), date,  usage);
@@ -94,6 +97,69 @@ public class Testing {
             catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+            System.out.println("");
+        }
+    }
+
+  public static void addFixtureProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
+        int inputFixture = 0;
+        WaterFixture fixture;
+        System.out.println("1. Shower (L/minute)");
+        System.out.println("2. Toilet (L/flush)");
+        System.out.println("3. General Water Appliance (L/whole number unit)");
+        System.out.print("Choose Type of Water Fixture to add. (1-3): ");
+
+        try{
+            inputFixture = Integer.parseInt(input.nextLine());
+
+            // Validation to ensure user selects a valid fixture type
+            if(inputFixture < 1 || inputFixture > 3){
+                throw new IllegalArgumentException("Fixture type must be 1, 2, or 3.");
+            }
+
+            System.out.print("Enter Name: ");
+            String name = input.nextLine().trim();
+
+            // Validation to ensure each water fixture object has a unique name.
+            for (WaterFixture fixtureObject : fixtureArrayList){
+                if (name.equals(fixtureObject.getName())){
+                    throw new IllegalArgumentException ("Fixture with same name already exists!");
+                }
+            }
+
+            System.out.print("Enter water usage rate (L/unit): ");
+            double usageRate = 0;
+            usageRate = Double.parseDouble(input.nextLine());
+
+            switch(inputFixture){
+                case 1:
+                    fixture = new ShowerFixture(name, usageRate);
+                    System.out.printf("Shower Fixture named (%s) with a water usage rate of (%.2f) L/minute was created.\n" ,fixture.getName() ,fixture.getWaterUsageRate());
+                    household.addFixture(fixture);
+                    break;
+
+                case 2:
+                    fixture = new ToiletFixture(name, usageRate);
+                    System.out.printf("Toilet Fixture named (%s) with a water usage rate of (%.2f) L/flush was created.\n " ,fixture.getName() ,fixture.getWaterUsageRate());
+                    household.addFixture(fixture);
+                    break;
+
+                case 3:
+                    fixture = new ApplianceFixture(name, usageRate);
+                    System.out.printf("Appliance Type Fixture named (%s) with a water usage rate of (%.2f) L/unit was created.\n " ,fixture.getName() ,fixture.getWaterUsageRate());
+                    household.addFixture(fixture);
+                    break;
+                default:
+                    System.out.println("Invalid Option! Please try again.");
+                    break;
+            }
+            System.out.println("");
+            household.displayFixtures();
+
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid number.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid input: " + e.getMessage());
         }
     }
 }

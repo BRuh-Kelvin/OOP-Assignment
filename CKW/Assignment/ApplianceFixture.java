@@ -6,30 +6,12 @@ public class ApplianceFixture extends WaterFixture {
 
     // Constructor, WaterFixture object creation with name, water flow rate
     public ApplianceFixture(String givenName, double givenWFR) {
-        super(givenName); // Pass value to the constructor in WaterFixture
-        setWaterUsage(givenWFR);
+        super(givenName,givenWFR); // Pass value to the constructor in WaterFixture
     }
 
     // Constructor, WaterFixture object creation with ("Unknown", 0.0)
     public ApplianceFixture() {
-        super("Unknown"); // Pass value to the constructor in WaterFixture
-        waterFlowRate = 0.0;
-    }
-
-    // Object's method of getting water flow rate
-    @Override
-    public double getWaterUsage() {
-        return waterFlowRate;
-    }
-
-    // Object's method of setting water flow rate
-    @Override
-    public void setWaterUsage(double givenWaterUsage) {
-        if (givenWaterUsage < 0) {
-            throw new IllegalArgumentException("Water flow rate cannot be negative");
-        } else {
-            waterFlowRate = givenWaterUsage;
-        }
+        super("Unknown",0.0); // Pass value to the constructor in WaterFixture
     }
 
     // Water usage calculation

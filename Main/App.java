@@ -37,6 +37,9 @@ public class App {
                     break;
                 case 3:
                     // View total consumption and estimated cost 
+                    household.waterUsageReport();
+                    household.displayFixtures();
+                    household.displayRecords();
                 case 4:
                     // Show high-consumption fixtures and saving tips 
                     break;
@@ -51,19 +54,32 @@ public class App {
     input.close();
     }
 
-    public static void addFixtureProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
-        // Add fixtures (probably and inner case switch of if else gate to choose what type of fixture) or links to a method
+  public static void addFixtureProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
         int inputFixture = 0;
         WaterFixture fixture;
-        System.out.println("1. Shower");
-        System.out.println("2. Toilet");
-        System.out.println("3. General Water Appliance (Whole number usage)");
+        System.out.println("1. Shower (L/minute)");
+        System.out.println("2. Toilet (L/flush)");
+        System.out.println("3. General Water Appliance (L/whole number unit)");
         System.out.print("Choose Type of Water Fixture to add. (1-3): ");
 
         try{
             inputFixture = Integer.parseInt(input.nextLine());
+
+            // Validation to ensure user selects a valid fixture type
+            if(inputFixture < 1 || inputFixture > 3){
+                throw new IllegalArgumentException("Fixture type must be 1, 2, or 3.");
+            }
+
             System.out.print("Enter Name: ");
             String name = input.nextLine().trim();
+
+            // Validation to ensure each water fixture object has a unique name.
+            for (WaterFixture fixtureObject : fixtureArrayList){
+                if (name.equals(fixtureObject.getName())){
+                    throw new IllegalArgumentException ("Fixture with same name already exists!");
+                }
+            }
+
             System.out.print("Enter water usage rate (L/unit): ");
             double usageRate = 0;
             usageRate = Double.parseDouble(input.nextLine());
@@ -71,19 +87,19 @@ public class App {
             switch(inputFixture){
                 case 1:
                     fixture = new ShowerFixture(name, usageRate);
-                    System.out.println("Shower Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.printf("Shower Fixture named (%s) with a water usage rate of (%.2f) L/minute was created.\n" ,fixture.getName() ,fixture.getWaterUsage());
                     household.addFixture(fixture);
                     break;
 
                 case 2:
                     fixture = new ToiletFixture(name, usageRate);
-                    System.out.println("Toilet Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.printf("Toilet Fixture named (%s) with a water usage rate of (%.2f) L/flush was created.\n " ,fixture.getName() ,fixture.getWaterUsageRate());
                     household.addFixture(fixture);
                     break;
 
                 case 3:
                     fixture = new ApplianceFixture(name, usageRate);
-                    System.out.println("Appliancne Fixture created:" + fixture.getName() + " " + fixture.getWaterUsage());
+                    System.out.printf("Appliance Type Fixture named (%s) with a water usage rate of (%.2f) L/unit was created.\n " ,fixture.getName() ,fixture.getWaterUsageRate());
                     household.addFixture(fixture);
                     break;
                 default:
@@ -94,12 +110,11 @@ public class App {
             household.displayFixtures();
 
         } catch (NumberFormatException e) {
-            System.out.println("Please enter a number.");
+            System.out.println("Please enter a valid number.");
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid input: " + e.getMessage());
         }
     }
-
 
     public static void recordUsageProcess(Household household, ArrayList<WaterFixture> fixtureArrayList, Scanner input) {
         // Display fixture list
