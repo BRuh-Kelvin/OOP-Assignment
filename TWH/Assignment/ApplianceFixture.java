@@ -43,5 +43,11 @@ public class ApplianceFixture extends WaterFixture {
     public boolean requiresWholeNumber() {
         return true;
     }
-    // ?
+
+    // Saving tips
+    @Override
+    public void savingTips() {
+        System.out.println(
+                "Appliance fixture has exceeded the threshold. Avoid running applainces with small loads and choosing an eco-friendly setting.");
+    }
 }

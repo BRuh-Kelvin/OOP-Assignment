@@ -43,5 +43,10 @@ public class ShowerFixture extends WaterFixture {
     public boolean requiresWholeNumber() {
         return false;
     }
-    // ?
+
+    // Saving tips
+    @Override
+    public void savingTips() {
+        System.out.println("Shower fixture has exceeded the threshold. Reduce shower time to conserve water.");
+    }
 }

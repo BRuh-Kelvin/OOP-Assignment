@@ -43,5 +43,11 @@ public class ToiletFixture extends WaterFixture {
     public boolean requiresWholeNumber() {
         return true;
     }
-    // ?
+
+    // Saving tips
+    @Override
+    public void savingTips() {
+        System.out.println(
+                "Toilet fixture has exceeded the threshold. Flush only when necessary and dispose of tissues in the bin prevent clogging, which may require more flushes.");
+    }
 }

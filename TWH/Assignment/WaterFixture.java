@@ -47,5 +47,9 @@ public class WaterFixture {
     public boolean requiresWholeNumber() {
         return true;
     }
-    // ?
+
+    // Saving tips
+    public void savingTips() {
+
+    }
 }
