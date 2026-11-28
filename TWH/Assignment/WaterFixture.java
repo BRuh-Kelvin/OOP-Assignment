@@ -38,7 +38,7 @@ public class WaterFixture {
         }
     }
 
-    // Water usage calculation (For ShowerFixture and ApplianceFixture)
+    // Water usage calculation
     public double calculateWaterUsage(double amount) {
         return 0;
     };
