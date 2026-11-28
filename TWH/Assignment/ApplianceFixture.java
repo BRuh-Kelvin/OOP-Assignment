@@ -48,6 +48,6 @@ public class ApplianceFixture extends WaterFixture {
     @Override
     public void savingTips() {
         System.out.println(
-                "Appliance fixture has exceeded the threshold. Avoid running applainces with small loads and choosing an eco-friendly setting.");
+                "Appliance fixture has exceeded the threshold. Avoid running applainces with small loads and select an eco-friendly setting.");
     }
 }
